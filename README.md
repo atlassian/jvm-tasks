@@ -7,6 +7,12 @@ SCM is an ultimate source of truth about project version and you will not find i
 To get the current version of the project from Git execute `./gradlew currentVersion`.
 
 ### Releasing
+This project uses [Bitbucket pipelines](bitbucket-pipelines.yml) to run the tests and release the project.
+Simply execute the *Release project* manual stage on *master* branch or corresponding *Release snapshot* stage 
+if you wish to release a new *SNAPSHOT* version from your branch.
+                   
+
+#### Releasing manually
 To release a new version of the project execute `./gradlew release`.
 You should release new version only from *master* branch.
 To publish a new version execute `./gradlew publish`. The project is configured to publish its versions to Atlassian 
