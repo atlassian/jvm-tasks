@@ -1,6 +1,7 @@
 import java.net.URI
 import net.linguica.gradle.maven.settings.LocalMavenSettingsLoader
 import net.linguica.gradle.maven.settings.MavenSettingsPluginExtension
+import org.jetbrains.dokka.gradle.DokkaTask
 
 val kotlinVersion = "1.2.30"
 
@@ -20,6 +21,7 @@ plugins {
     kotlin("jvm").version("1.2.30")
     maven
     `maven-publish`
+    id("org.jetbrains.dokka") version "0.9.17"
     id("pl.allegro.tech.build.axion-release").version("1.8.1")
 }
 
@@ -51,6 +53,19 @@ val sourcesJar by tasks.creating(Jar::class) {
     from(java.sourceSets["main"].allSource)
 }
 
+val dokka by tasks.getting(DokkaTask::class) {
+    outputFormat = "html"
+    outputDirectory = "$buildDir/javadoc"
+
+    reportUndocumented = false
+}
+
+val javadocJar by tasks.creating(Jar::class) {
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    classifier = "javadoc"
+    from(dokka)
+}
+
 publishing {
     val publication = publications.create("mavenJava", MavenPublication::class.java) {
         pom {
@@ -71,6 +86,7 @@ publishing {
     publication.apply {
         artifact(jar)
         artifact(sourcesJar)
+        artifact(javadocJar)
     }
     if (scmVersion.version.endsWith("SNAPSHOT")) {
         repositories.add(project.repositories["atlassian-private-snapshot"])
