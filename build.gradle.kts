@@ -19,7 +19,6 @@ buildscript {
 
 plugins {
     kotlin("jvm").version("1.2.30")
-    maven
     `maven-publish`
     id("org.jetbrains.dokka") version "0.9.17"
     id("pl.allegro.tech.build.axion-release").version("1.8.1")
@@ -36,16 +35,12 @@ scmVersion {
     tag.prefix = "release"
 }
 project.version = scmVersion.version
+project.group = "com.atlassian.performance.tools"
 
 tasks["release"].doFirst {
     if (scmVersion.scmPosition.branch != "master") {
         throw Exception("Releasing allowed only on master branch")
     }
-}
-
-maven {
-    group = "com.atlassian.performance.tools"
-    version = scmVersion.version
 }
 
 val sourcesJar by tasks.creating(Jar::class) {
