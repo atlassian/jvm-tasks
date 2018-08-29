@@ -1,8 +1,7 @@
-package com.atlassian.performance.tools.jvmtasks
+package com.atlassian.performance.tools.jvmtasks.api
 
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import java.time.Duration
 
 /**
  * @param description in imperative mood
@@ -15,6 +14,9 @@ class IdempotentAction<out T>(
         private val LOGGER: Logger = LogManager.getLogger(this::class.java)
     }
 
+    /**
+     * Retries [action] for at most [maxAttempts] using [backoff] between every attempt.
+     */
     fun retry(
         maxAttempts: Int,
         backoff: Backoff
@@ -34,24 +36,5 @@ class IdempotentAction<out T>(
             LOGGER.debug("Stacktrace for #$attempt failed attempt of $description", exception)
         }
         throw Exception("Failed to $description despite $maxAttempts attempts")
-    }
-}
-
-interface Backoff {
-    fun backOff(
-        attempt: Int
-    ): Duration
-}
-
-class ExponentialBackoff(
-    private val baseBackoff: Duration,
-    private val exponent: Double = 2.0
-) : Backoff {
-
-    override fun backOff(
-        attempt: Int
-    ): Duration {
-        val factor = Math.pow(exponent, attempt.toDouble()).toLong()
-        return baseBackoff.multipliedBy(factor)
     }
 }

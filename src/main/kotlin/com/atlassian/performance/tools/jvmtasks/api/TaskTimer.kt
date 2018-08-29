@@ -1,4 +1,4 @@
-package com.atlassian.performance.tools.jvmtasks
+package com.atlassian.performance.tools.jvmtasks.api
 
 import org.apache.logging.log4j.CloseableThreadContext
 import org.apache.logging.log4j.LogManager
@@ -9,6 +9,9 @@ object TaskTimer {
 
     private val logger = LogManager.getLogger(this::class.java)
 
+    /**
+     * Logs the duration taken by [task].
+     */
     fun <T> time(
         label: String,
         task: () -> T

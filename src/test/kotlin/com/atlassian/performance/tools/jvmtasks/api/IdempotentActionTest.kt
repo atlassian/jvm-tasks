@@ -1,4 +1,4 @@
-package com.atlassian.performance.tools.jvmtasks
+package com.atlassian.performance.tools.jvmtasks.api
 
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert.assertThat
