@@ -1,11 +1,14 @@
 # JVM tasks
 Manage JVM tasks programmatically.
 
-## Releasing
-Versioning, releasing and distribution are managed by the [gradle-release] plugin.
-See the [changelog](CHANGELOG.md).
+## Reporting issues
 
-[gradle-release]: https://bitbucket.org/atlassian/gradle-release/src/release-0.3.0/README.md
+We track all the changes in a [public issue tracker](https://ecosystem.atlassian.net/secure/RapidBoard.jspa?rapidView=457&projectKey=JPERF).
+All the suggestions and bug reports are welcome.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 Copyright (c) 2018 Atlassian and others.
