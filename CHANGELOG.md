@@ -18,6 +18,11 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 ## [Unreleased]
 [Unreleased]: https://bitbucket.org/atlassian/jvm-tasks/branches/compare/master%0Drelease-1.0.0
 
+### Fixed
+- Log last exception from `IdempotentAction`. Fix [JPERF-461]
+
+[JPERF-461]: https://ecosystem.atlassian.net/browse/JPERF-461
+
 ## [1.0.0] - 2018-08-29
 [1.0.0]: https://bitbucket.org/atlassian/jvm-tasks/branches/compare/release-1.0.0%0Drelease-0.0.1
 
