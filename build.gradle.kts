@@ -2,7 +2,7 @@ val kotlinVersion = "1.2.30"
 
 plugins {
     kotlin("jvm").version("1.2.30")
-    id("com.atlassian.performance.tools.gradle-release").version("0.4.1")
+    id("com.atlassian.performance.tools.gradle-release").version("0.5.0")
 }
 
 dependencies {
@@ -22,6 +22,7 @@ fun log4j(
     "org.apache.logging.log4j:log4j-$module:2.10.0"
 }
 
-val wrapper = tasks["wrapper"] as Wrapper
-wrapper.gradleVersion = "4.9"
-wrapper.distributionType = Wrapper.DistributionType.ALL
+tasks.wrapper {
+    gradleVersion = "5.2.1"
+    distributionType = Wrapper.DistributionType.ALL
+}
