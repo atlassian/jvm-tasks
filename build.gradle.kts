@@ -1,12 +1,12 @@
-val kotlinVersion = "1.2.30"
+val kotlinVersion = "1.2.70"
 
 plugins {
-    kotlin("jvm").version("1.2.30")
+    kotlin("jvm").version("1.2.70")
     id("com.atlassian.performance.tools.gradle-release").version("0.5.0")
 }
 
 dependencies {
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     testCompile("junit:junit:4.12")
     testCompile("org.assertj:assertj-core:3.12.2")
     log4j(
