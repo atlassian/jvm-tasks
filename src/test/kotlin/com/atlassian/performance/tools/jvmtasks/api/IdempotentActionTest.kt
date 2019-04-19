@@ -31,7 +31,7 @@ class IdempotentActionTest {
                 maxAttempts = 4,
                 backoff = CountingBackoff()
             )
-        }
+        }.withStackTraceContaining("I'll never be operational - 3")
     }
 }
 
@@ -51,8 +51,9 @@ private class LazyServer {
 }
 
 private class BrokenServer {
+    private var counter = 0
     fun connect() {
-        throw Exception("I'll never be operational")
+        throw Exception("I'll never be operational - ${counter++}")
     }
 }
 
