@@ -8,7 +8,7 @@ plugins {
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
     testCompile("junit:junit:4.12")
-    testCompile("org.hamcrest:hamcrest-library:1.3")
+    testCompile("org.assertj:assertj-core:3.12.2")
     log4j(
         "api",
         "core",

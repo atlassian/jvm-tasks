@@ -1,17 +1,14 @@
 package com.atlassian.performance.tools.jvmtasks.api
 
-import org.hamcrest.CoreMatchers.equalTo
-import org.junit.Assert.assertThat
+import org.assertj.core.api.Assertions.*
 import org.junit.Test
 import java.time.Duration
 
 class IdempotentActionTest {
 
-    private val lazyServer = LazyServer()
-    private val brokenServer = BrokenServer()
-
     @Test
     fun shouldRetryDespiteInitialFailure() {
+        val lazyServer = LazyServer()
         val backoff = CountingBackoff()
         val action = IdempotentAction("connect to server") { lazyServer.connect() }
 
@@ -20,17 +17,21 @@ class IdempotentActionTest {
             backoff = backoff
         )
 
-        assertThat(backoff.calls, equalTo(1))
+        assertThat(backoff.calls).isEqualTo(1)
     }
 
-    @Test(expected = Exception::class)
+    @Test
     fun shouldFailAfterTooManyAttempts() {
+        val brokenServer = BrokenServer()
         val action = IdempotentAction("connect to server") { brokenServer.connect() }
 
-        action.retry(
-            maxAttempts = 4,
-            backoff = CountingBackoff()
-        )
+        assertThatExceptionOfType(Exception::class.java)
+            .isThrownBy {
+            action.retry(
+                maxAttempts = 4,
+                backoff = CountingBackoff()
+            )
+        }
     }
 }
 
@@ -50,7 +51,6 @@ private class LazyServer {
 }
 
 private class BrokenServer {
-
     fun connect() {
         throw Exception("I'll never be operational")
     }
