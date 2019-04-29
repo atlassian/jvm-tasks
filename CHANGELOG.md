@@ -16,10 +16,10 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 [behavioral compatibility]: http://cr.openjdk.java.net/~darcy/OpenJdkDevGuide/OpenJdkDevelopersGuide.v0.777.html#behavioral_compatibility
 
 ## [Unreleased]
-[Unreleased]: https://bitbucket.org/atlassian/jvm-tasks/branches/compare/master%0Drelease-1.0.1
+[Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.0.1...master
 
 ## [1.0.1] - 2019-04-23
-[1.0.1]: https://bitbucket.org/atlassian/jvm-tasks/branches/compare/release-1.0.1%0Drelease-1.0.0
+[1.0.1]: https://github.com/atlassian/jvm-tasks/compare/release-1.0.0...release-1.0.1
 
 ### Fixed
 - Log last exception from `IdempotentAction`. Fix [JPERF-461].
@@ -29,7 +29,7 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 [JPERF-466]: https://ecosystem.atlassian.net/browse/JPERF-466
 
 ## [1.0.0] - 2018-08-29
-[1.0.0]: https://bitbucket.org/atlassian/jvm-tasks/branches/compare/release-1.0.0%0Drelease-0.0.1
+[1.0.0]: https://github.com/atlassian/jvm-tasks/compare/release-0.0.1...release-1.0.0
 
 ### Changed
 - Define public API.
@@ -39,7 +39,7 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 - Add this change log.
 
 ## [0.0.1] - 2018-07-27
-[0.0.1]: https://bitbucket.org/atlassian/jvm-tasks/branches/compare/release-0.0.1%0Dinitial-commit
+[0.0.1]: https://github.com/atlassian/jvm-tasks/compare/initial-commit...release-0.0.1
 
 ### Added
 - Migrate JVM task management from [JPT submodule].
