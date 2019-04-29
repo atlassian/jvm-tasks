@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/atlassian/jvm-tasks.svg?branch=master)](https://travis-ci.com/atlassian/jvm-tasks)
+
 # JVM tasks
 Manage JVM tasks programmatically.
 
