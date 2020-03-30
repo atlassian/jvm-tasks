@@ -15,3 +15,12 @@ interface Backoff {
         attempt: Int
     ): Duration
 }
+
+/**
+ * @param other Prolongs this back-off.
+ * @return Sums both back-offs.
+ * @since 1.1.0
+ */
+operator fun Backoff.plus(
+    other: Backoff
+): Backoff = SumBackoff(this, other)
