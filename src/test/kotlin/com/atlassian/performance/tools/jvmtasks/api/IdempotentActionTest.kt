@@ -24,14 +24,19 @@ class IdempotentActionTest {
     fun shouldFailAfterTooManyAttempts() {
         val brokenServer = BrokenServer()
         val action = IdempotentAction("connect to server") { brokenServer.connect() }
+        val backoff = CountingBackoff()
+        val maxAttempts = 4
 
         assertThatExceptionOfType(Exception::class.java)
             .isThrownBy {
             action.retry(
-                maxAttempts = 4,
-                backoff = CountingBackoff()
+                maxAttempts = maxAttempts,
+                backoff = backoff
             )
-        }.withStackTraceContaining("I'll never be operational - 3")
+        }.withStackTraceContaining("I'll never be operational - $maxAttempts")
+        assertThat(backoff.calls)
+            .`as`("Back-off count")
+            .isEqualTo(maxAttempts - 1)
     }
 }
 
@@ -53,7 +58,7 @@ private class LazyServer {
 private class BrokenServer {
     private var counter = 0
     fun connect() {
-        throw Exception("I'll never be operational - ${counter++}")
+        throw Exception("I'll never be operational - ${++counter}")
     }
 }
 
