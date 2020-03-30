@@ -18,6 +18,9 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 ## [Unreleased]
 [Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.0.1...master
 
+### Added
+- Add static, jitter and sum back-offs.
+
 ## [1.0.1] - 2019-04-23
 [1.0.1]: https://github.com/atlassian/jvm-tasks/compare/release-1.0.0...release-1.0.1
 
