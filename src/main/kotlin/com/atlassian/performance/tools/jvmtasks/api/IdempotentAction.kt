@@ -21,28 +21,33 @@ class IdempotentAction<out T>(
         maxAttempts: Int,
         backoff: Backoff
     ): T {
-        val failedAttempts = mutableMapOf<Int, Exception>()
-        var lastException: Exception? = null
         val attempts = 1..maxAttempts
+        val failedAttempts = mutableListOf<FailedAttempt>()
         for (attempt in attempts) {
             try {
                 return action()
             } catch (e: Exception) {
-                lastException = e
-                failedAttempts += attempt to e
-                val failedAttemptMessage = "Attempt #$attempt failed to $description, ${e.message}"
-                if (attempt == attempts.last) {
-                    LOGGER.debug("$failedAttemptMessage, it was the last attempt")
-                } else {
+                val failedAttempt = FailedAttempt(attempt, e, description)
+                failedAttempts += failedAttempt
+                if (attempt != attempts.last) {
                     val delay = backoff.backOff(attempt)
-                    LOGGER.debug("$failedAttemptMessage, backing off for $delay ...")
+                    LOGGER.debug("$failedAttempt, backing off for $delay ...")
                     Thread.sleep(delay.toMillis())
                 }
             }
         }
-        failedAttempts.forEach { (attempt, exception) ->
-            LOGGER.debug("Stacktrace for #$attempt failed attempt of $description", exception)
-        }
-        throw Exception("Failed to $description despite $maxAttempts attempts", lastException)
+        val lastAttempt = failedAttempts.last()
+        LOGGER.debug("$lastAttempt, it was the last attempt")
+        failedAttempts.forEach { LOGGER.debug("Stacktrace for $it", it.failure) }
+        throw Exception("Failed to $description despite $maxAttempts attempts", lastAttempt.failure)
+
+    }
+
+    private class FailedAttempt(
+        val attempt: Int,
+        val failure: Exception,
+        val action: String
+    ) {
+        override fun toString() = "Attempt #$attempt failed to $action, ${failure.message}"
     }
 }
