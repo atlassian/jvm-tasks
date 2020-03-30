@@ -23,18 +23,24 @@ class IdempotentAction<out T>(
     ): T {
         val failedAttempts = mutableMapOf<Int, Exception>()
         var lastException: Exception? = null
-        for (attempt in 1..maxAttempts) {
+        val attempts = 1..maxAttempts
+        for (attempt in attempts) {
             try {
                 return action()
             } catch (e: Exception) {
                 lastException = e
-                val delay = backoff.backOff(attempt)
-                LOGGER.debug("Attempt #$attempt failed to $description, ${e.message}, backing off for $delay ...")
                 failedAttempts += attempt to e
-                Thread.sleep(delay.toMillis())
+                val failedAttemptMessage = "Attempt #$attempt failed to $description, ${e.message}"
+                if (attempt == attempts.last) {
+                    LOGGER.debug("$failedAttemptMessage, it was the last attempt")
+                } else {
+                    val delay = backoff.backOff(attempt)
+                    LOGGER.debug("$failedAttemptMessage, backing off for $delay ...")
+                    Thread.sleep(delay.toMillis())
+                }
             }
         }
-        failedAttempts.forEach { attempt, exception ->
+        failedAttempts.forEach { (attempt, exception) ->
             LOGGER.debug("Stacktrace for #$attempt failed attempt of $description", exception)
         }
         throw Exception("Failed to $description despite $maxAttempts attempts", lastException)

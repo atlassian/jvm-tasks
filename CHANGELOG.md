@@ -18,6 +18,11 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 ## [Unreleased]
 [Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.2.0...master
 
+### Fixed
+- Stop sleeping after last failed attempt in `IdempotentAction`. Fix [JPERF-620].
+
+[JPERF-620]: https://ecosystem.atlassian.net/browse/JPERF-620
+
 ## [1.2.0] - 2020-11-04
 [1.2.0]: https://github.com/atlassian/jvm-tasks/compare/release-1.1.0...release-1.2.0
 
