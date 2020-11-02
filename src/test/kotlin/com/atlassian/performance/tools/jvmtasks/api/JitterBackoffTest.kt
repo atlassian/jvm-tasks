@@ -14,4 +14,14 @@ class JitterBackoffTest {
 
         assertThat(durations).noneMatch { it.isNegative }
     }
+
+    @Test
+    fun shouldSpread() {
+        val backoff = JitterBackoff(ofSeconds(10))
+
+        val durations = (1..1000).map { backoff.backOff(1) }
+
+        val spread = durations.max()!! - durations.min()!!
+        assertThat(spread).isGreaterThan(ofSeconds(7)) // yeah there's a chance it flakes, but it's 1 in gazillion
+    }
 }
