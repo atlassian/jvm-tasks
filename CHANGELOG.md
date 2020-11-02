@@ -18,6 +18,11 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 ## [Unreleased]
 [Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.1.0...master
 
+### Fixed
+- Fix jitter back-offs returning negative time. Fix [JPERF-683].
+
+[JPERF-683]: https://ecosystem.atlassian.net/browse/JPERF-683
+
 ## [1.1.0] - 2020-08-25
 [1.1.0]: https://github.com/atlassian/jvm-tasks/compare/release-1.0.1...release-1.1.0
 
