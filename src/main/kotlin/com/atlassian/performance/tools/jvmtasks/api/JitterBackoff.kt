@@ -8,12 +8,17 @@ import kotlin.math.absoluteValue
  * Backs off for a random duration, at most [max].
  *
  * @since 1.1.0
+ * @constructor @since 1.2.0
  */
 class JitterBackoff(
-    private val max: Duration
+    private val max: Duration,
+    private val random: Random
 ) : Backoff {
 
-    private val random = Random()
+    /**
+     * @since 1.1.0
+     */
+    constructor(max: Duration) : this(max, Random())
 
     override fun backOff(attempt: Int): Duration {
         val randomMillis = random

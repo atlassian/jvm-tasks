@@ -18,6 +18,9 @@ The API consists of all public Kotlin types from `com.atlassian.performance.tool
 ## [Unreleased]
 [Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.1.0...master
 
+### Added
+- Parametrize `JitterBackoff` with a `Random` for predictability (seeding).
+
 ### Fixed
 - Fix jitter back-offs returning negative time. Fix [JPERF-683].
 
