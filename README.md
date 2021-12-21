@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/atlassian/jvm-tasks.svg?branch=master)](https://travis-ci.com/atlassian/jvm-tasks)
+[![CI status](https://github.com/atlassian/jvm-tasks/workflows/CI/badge.svg)](https://github.com/atlassian/jvm-tasks/actions?query=branch%3Amaster+workflow%3ACI)
 
 # JVM tasks
 Manage JVM tasks programmatically.
