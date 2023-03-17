@@ -1,4 +1,5 @@
 val kotlinVersion = "1.2.70"
+val log4jVersion = "2.17.1"
 
 plugins {
     kotlin("jvm").version("1.2.70")
@@ -9,17 +10,8 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     testCompile("junit:junit:4.12")
     testCompile("org.assertj:assertj-core:3.12.2")
-    log4j(
-        "api",
-        "core",
-        "slf4j-impl"
-    ).forEach { compile(it) }
-}
-
-fun log4j(
-    vararg modules: String
-): List<String> = modules.map { module ->
-    "org.apache.logging.log4j:log4j-$module:2.17.1"
+    implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
+    testImplementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
 }
 
 tasks.wrapper {
