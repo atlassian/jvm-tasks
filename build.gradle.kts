@@ -1,5 +1,5 @@
 val kotlinVersion = "1.2.70"
-val log4jVersion = "2.17.1"
+val log4jVersion = "[2.6, 2.999.999)"
 
 plugins {
     kotlin("jvm").version("1.2.70")
