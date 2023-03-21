@@ -26,11 +26,17 @@ Dropping a requirement of a major version of a dependency is a new contract.
 ## [Unreleased]
 [Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.2.4...master
 
+This change in POM was already done in [1.2.4]. This release upgrades the change into a contract.
+E.g. you can depend on `[1.3.0, 2.0.0)` and know that `log4j-core` will not come back and cause a conflict.
+
+### Added
+- Drop major versions of `log4j-core` and `log4j-slf4j-impl`. Fix [JPERF-570].
+
 ## [1.2.4] - 2023-03-21
 [1.2.4]: https://github.com/atlassian/jvm-tasks/compare/release-1.2.3...release-1.2.4
 
 ### Fixed
-- Drop `log4j-core` and `slf4j-impl` from POM. Fix [JPERF-570].
+- Drop `log4j-core` and `log4j-slf4j-impl` from POM. Fix [JPERF-570].
 - Demote `log4j-api` from `compile` to `runtime` scope in POM. Fix [JPERF-570].
 
 [JPERF-570]: https://ecosystem.atlassian.net/browse/JPERF-570
