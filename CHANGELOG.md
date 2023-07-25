@@ -31,6 +31,10 @@ E.g. you can depend on `[1.3.0, 2.0.0)` and know that `log4j-core` will not come
 
 ### Added
 - Drop major versions of `log4j-core` and `log4j-slf4j-impl`. Fix [JPERF-570].
+- Add `TaskTimer.TaskStartedHandler`, `TaskTimer.TaskSucceededHandler` and `TaskTimer.TaskFailedHandler` interfaces. Unblock [JPERF-1196].
+- Add functions for subscribing and unsubscribing task handlers in `TaskTimer`. Unblock [JPERF-1196].
+
+[JPERF-1196]: https://ecosystem.atlassian.net/browse/JPERF-1196
 
 ### Fixed
 - Relax `log4j-api` dependency to a SemVer range.
