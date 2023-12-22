@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Test
 import java.time.Duration
 
+@Suppress("DEPRECATION") // we need to test the deprecated API still
 class TaskTimerTest {
     private val handler = DummyEventHandler()
 

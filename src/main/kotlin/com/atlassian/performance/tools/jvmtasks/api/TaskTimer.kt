@@ -1,13 +1,13 @@
 package com.atlassian.performance.tools.jvmtasks.api
 
 import net.jcip.annotations.ThreadSafe
-import org.apache.logging.log4j.CloseableThreadContext
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.ThreadContext
 import java.time.Duration
 import java.time.Instant.now
 import java.util.concurrent.CopyOnWriteArrayList
 
+@Deprecated("Use TaskScope instead")
 @ThreadSafe
 object TaskTimer {
     private val logger = LogManager.getLogger(this::class.java)
@@ -22,7 +22,7 @@ object TaskTimer {
         label: String,
         task: () -> T
     ): T {
-        CloseableThreadContext.push(label).use {
+        return TaskScope.task(label) {
             val path = ThreadContext.cloneStack().asList()
             taskStartedHandlers.forEach { it.onTaskStarted(path) }
             val start = now()
@@ -37,7 +37,7 @@ object TaskTimer {
             val duration = Duration.between(start, now())
             taskSucceededHandlers.forEach { it.onTaskSucceeded(path, duration) }
             logger.debug("The task took $duration")
-            return result
+            result
         }
     }
 
