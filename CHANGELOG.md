@@ -26,6 +26,9 @@ Dropping a requirement of a major version of a dependency is a new contract.
 ## [Unreleased]
 [Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.3.0...master
 
+### Added
+- Add `EventBus` for pub-sub loose coupling between layers. E.g. for GUI live-reacting to events from deep layers.
+
 ## [1.3.0] - 2023-07-26
 [1.3.0]: https://github.com/atlassian/jvm-tasks/compare/release-1.2.4...release-1.3.0
 
