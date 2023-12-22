@@ -28,6 +28,15 @@ Dropping a requirement of a major version of a dependency is a new contract.
 
 ### Added
 - Add `EventBus` for pub-sub loose coupling between layers. E.g. for GUI live-reacting to events from deep layers.
+- Add `TaskScope` to scope out JVM subtasks and publish task events.
+
+### Deprecated
+- Deprecate `TaskTimer` in favor of `TaskScope`.
+  The scope is more generic. It doesn't log task time, but it publishes events. Event subs can measure the task time and
+  do more powerful things than just logging.
+
+### Fixed
+- Use `TaskScope` within `TaskTimer`.
 
 ## [1.3.0] - 2023-07-26
 [1.3.0]: https://github.com/atlassian/jvm-tasks/compare/release-1.2.4...release-1.3.0
