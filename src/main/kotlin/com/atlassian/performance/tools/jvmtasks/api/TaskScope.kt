@@ -5,6 +5,9 @@ import org.apache.logging.log4j.CloseableThreadContext
 import org.apache.logging.log4j.ThreadContext // we can implement our own thread stack structure if need be
 import java.util.concurrent.Callable
 
+/**
+ * @since 1.4.0
+ */
 @Immutable
 object TaskScope {
 
