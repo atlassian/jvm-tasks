@@ -4,6 +4,9 @@ import net.jcip.annotations.GuardedBy
 import net.jcip.annotations.ThreadSafe
 import java.util.function.Consumer
 
+/**
+ * @since 1.4.0
+ */
 @ThreadSafe
 object EventBus {
     private val subscribers = mutableMapOf<Class<*>, MutableList<Consumer<Any>>>()
