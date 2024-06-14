@@ -8,6 +8,13 @@ plugins {
     id("com.atlassian.performance.tools.gradle-release").version("0.7.3")
 }
 
+configurations.all {
+    resolutionStrategy {
+        activateDependencyLocking()
+        failOnVersionConflict()
+    }
+}
+
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
     testCompile("junit:junit:4.12")
