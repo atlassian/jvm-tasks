@@ -1,11 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 val kotlinVersion = "1.2.70"
 val log4jVersion = "[2.6, 2.999.999)"
 
 plugins {
     id("com.atlassian.performance.tools.gradle-release").version("0.10.0")
     kotlin("jvm").version("1.3.20")
+    `java-library`
 }
 
 configurations.all {
@@ -19,12 +18,12 @@ configurations.all {
 }
 
 dependencies {
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-    testCompile("junit:junit:4.12")
-    testCompile("org.assertj:assertj-core:3.12.2")
+    api("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+    api("com.github.stephenc.jcip:jcip-annotations:1.0-1")
     implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
-    implementation("com.github.stephenc.jcip:jcip-annotations:1.0-1")
     testImplementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.assertj:assertj-core:3.12.2")
 }
 
 tasks.wrapper {
