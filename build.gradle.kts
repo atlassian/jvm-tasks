@@ -20,7 +20,7 @@ dependencies {
     testCompile("junit:junit:4.12")
     testCompile("org.assertj:assertj-core:3.12.2")
     implementation("org.apache.logging.log4j:log4j-api:$log4jVersion")
-    implementation("net.jcip:jcip-annotations:1.0")
+    implementation("com.github.stephenc.jcip:jcip-annotations:1.0-1")
     testImplementation("org.apache.logging.log4j:log4j-core:$log4jVersion")
 }
 
