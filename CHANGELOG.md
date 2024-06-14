@@ -26,6 +26,12 @@ Dropping a requirement of a major version of a dependency is a new contract.
 ## [Unreleased]
 [Unreleased]: https://github.com/atlassian/jvm-tasks/compare/release-1.3.0...master
 
+## [1.4.1] - 2024-06-14
+[1.4.1]: https://github.com/atlassian/jvm-tasks/compare/release-1.4.0...release-1.4.1
+
+### Fixed
+- Fix missing `net.jcip:jcip-annotations` license.
+
 ## [1.4.0] - 2023-12-22
 [1.4.0]: https://github.com/atlassian/jvm-tasks/compare/release-1.3.0...release-1.4.0
 
